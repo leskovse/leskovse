@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leskovse Studio</title>
+    <!-- Связь с файлом стилей -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Переключатель языков -->
+    <div class="lang-switcher">
+        <button id="btn-en" class="lang-btn active" onclick="setLanguage('en')">EN</button>
+        <button id="btn-ru" class="lang-btn" onclick="setLanguage('ru')">RU</button>
+    </div>
+
+    <h1>Leskovse</h1>
+
+    <div class="section-title" id="title-resources">Our Resources</div>
+    <div class="links-container">
+        <!-- Главная кнопка владельца, открывающая окно -->
+        <div class="social-link personal-link" id="link-larchesco" onclick="openModal()">👑 Larchesco (Owner)</div>
+        
+        <!-- Ссылки компании -->
+        <a href="https://t.me/leskovse" target="_blank" class="social-link" id="link-tg">✈️ Telegram Channel</a>
+        <a href="https://tiktok.com/@leskovse" target="_blank" class="social-link" id="link-tt">📱 TikTok Company</a>
+        <a href="https://youtube.com/@leskovse" target="_blank" class="social-link" id="link-yt">🎬 YouTube</a>
+        <a href="https://github.com/leskovse" target="_blank" class="social-link" id="link-gh">💻 GitHub</a>
+    </div>
+
+    <div class="section-title" id="title-projects">My Projects</div>
+    <div class="links-container">
+        <a href="#" class="social-link project-link" id="link-soon">Coming Soon</a>
+    </div>
+
+    <!-- ВСПЛЫВАЮЩЕЕ ОКНО (MODAL) ДЛЯ 6 ПЛАТФОРМ LARCHESCO -->
+    <div class="modal-overlay" id="personal-modal" onclick="closeModalOutside(event)">
+        <div class="modal-content">
+            <button class="close-modal" onclick="closeModal()">&times;</button>
+            <div class="modal-title" id="modal-title-text">Larchesco Profiles</div>
+            
+            <div class="modal-links">
+                <!-- Твои личные ссылки (6 штук) -->
+                <a href="https://kick.com/larchesco" target="_blank" class="modal-link-item">🟢 Kick</a>
+                <a href="https://twitch.tv/larchesco" target="_blank" class="modal-link-item">🟣 Twitch</a>
+                <a href="https://youtube.com/@larchesco" target="_blank" class="modal-link-item">🎬 YouTube</a>
+                <a href="https://tiktok.com/@larchesco" target="_blank" class="modal-link-item">📱 TikTok</a>
+                <a href="https://t.me/larchesco" target="_blank" class="modal-link-item" id="m-link-tg">✈️ Telegram Channel</a>
+                <a href="https://discord.gg/xRJbPqPS8" target="_blank" class="modal-link-item">🎮 Discord</a>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Словарь переводов
+        const translations = {
+            en: {
+                resources: "Our Resources",
+                larchesco: "👑 Larchesco (Owner)",
+                tg: "✈️ Telegram Channel",
+                tt: "📱 TikTok Company",
+                yt: "🎬 YouTube",
+                gh: "💻 GitHub",
+                projects: "My Projects",
+                soon: "Coming Soon",
+                modalTitle: "Larchesco Profiles",
+                modalTg: "✈️ Telegram Channel"
+            },
+            ru: {
+                resources: "Наши ресурсы",
+                larchesco: "👑 Larchesco (Владелец)",
+                tg: "✈️ Telegram канал",
+                tt: "📱 TikTok компании",
+                yt: "🎬 YouTube",
+                gh: "💻 GitHub",
+                projects: "Мои проекты",
+                soon: "Скоро",
+                modalTitle: "Профили Larchesco",
+                modalTg: "✈️ Telegram канал"
+            }
+        };
+
+        // Функция смены языка
+        function setLanguage(lang) {
+            document.getElementById('title-resources').innerText = translations[lang].resources;
+            document.getElementById('link-larchesco').innerText = translations[lang].larchesco;
+            document.getElementById('link-tg').innerText = translations[lang].tg;
+            document.getElementById('link-tt').innerText = translations[lang].tt;
+            document.getElementById('link-yt').innerText = translations[lang].yt;
+            document.getElementById('link-gh').innerText = translations[lang].gh;
+            document.getElementById('title-projects').innerText = translations[lang].projects;
+            document.getElementById('link-soon').innerText = translations[lang].soon;
+            document.getElementById('modal-title-text').innerText = translations[lang].modalTitle;
+            document.getElementById('m-link-tg').innerText = translations[lang].modalTg;
+
+            document.getElementById('btn-en').classList.remove('active');
+            document.getElementById('btn-ru').classList.remove('active');
+            document.getElementById('btn-' + lang).classList.add('active');
+        }
+
+        // Функции модального окна
+        function openModal() {
+            document.getElementById('personal-modal').classList.add('active');
+        }
+
+        function closeModal() {
+            document.getElementById('personal-modal').classList.remove('active');
+        }
+
+        function closeModalOutside(event) {
+            if (event.target.id === 'personal-modal') {
+                closeModal();
+            }
+        }
+    </script>
+</body>
+</html>
